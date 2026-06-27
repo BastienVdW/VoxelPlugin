@@ -4,6 +4,9 @@ VoxelPlugin is an Unreal Engine C++ library for modifier-driven voxel worlds, su
 
 The plugin provides the data structures, generators, and world subsystems needed to build these systems, but it does not impose a gameplay framework or automatically run the complete pipeline. A host project is expected to register views and modifiers, decide when work should run, and explicitly coordinate generation and flush points.
 
+> [!WARNING]
+> VoxelPlugin is experimental software developed through a small prototype. It is intended for experimentation and as a reference or foundation for further development, not for production use. Most generation and simulation work is multithreaded, but performance and scalability have not yet been validated for large worlds or production workloads.
+
 ## Core model
 
 Voxel data is generated from modifiers rather than edited directly. A modifier describes a shape, transform, operation, surface type, and material. Adding or removing one marks the affected chunks dirty; those chunks can then be rebuilt asynchronously.
