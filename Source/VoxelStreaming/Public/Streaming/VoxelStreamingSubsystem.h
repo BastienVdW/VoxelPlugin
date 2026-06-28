@@ -7,8 +7,9 @@
 #pragma once
 
 #include "Subsystems/WorldSubsystem.h"
-#include "Grid/VoxelGrid.h"
+
 #include "Generation/VoxelChunkGenerator.h"
+#include "Grid/VoxelGrid.h"
 #include "Streaming/VoxelView.h"
 #include "VoxelStreamingSubsystem.generated.h"
 

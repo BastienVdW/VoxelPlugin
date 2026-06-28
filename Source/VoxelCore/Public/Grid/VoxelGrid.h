@@ -41,6 +41,8 @@ public:
 
     TArray<FIntVector> GetDirtyChunks() const;
     void               ClearDirtyFlag(FIntVector ChunkCoord);
+	const TSet<FIntVector>& GetDirtyChunkCoords() const { return DirtyChunkCoords; }
+	void SetDirtyChunkCoords(const TSet<FIntVector>& NewDirtyChunkCoords);
 
     TArray<FVoxelModifierData> GetModifiersForChunk(const FIntVector& ChunkCoord) const;
     TArray<FModifierHandle>    GetModifierHandlesForChunk(const FIntVector& ChunkCoord) const;

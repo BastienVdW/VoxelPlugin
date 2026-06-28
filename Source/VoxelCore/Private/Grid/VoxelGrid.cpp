@@ -97,7 +97,29 @@ void FVoxelGrid::ClearDirtyFlag(FIntVector ChunkCoord)
 {
     DirtyChunkCoords.Remove(ChunkCoord);
     if (TSharedPtr<FVoxelChunk>* Found = Chunks.Find(ChunkCoord))
-        (*Found)->bDirty = false;
+    {
+    	(*Found)->bDirty = false;
+    }
+}
+
+void FVoxelGrid::SetDirtyChunkCoords(const TSet<FIntVector>& NewDirtyChunkCoords)
+{
+	for (const FIntVector& ChunkCoord : DirtyChunkCoords)
+	{
+		if (TSharedPtr<FVoxelChunk>* Chunk = Chunks.Find(ChunkCoord))
+		{
+			(*Chunk)->bDirty = false;
+		}
+	}
+
+	DirtyChunkCoords = NewDirtyChunkCoords;
+	for (const FIntVector& ChunkCoord : NewDirtyChunkCoords)
+	{
+		if (TSharedPtr<FVoxelChunk>* Chunk = Chunks.Find(ChunkCoord))
+		{
+			(*Chunk)->bDirty = true;
+		}
+	}
 }
 
 TArray<FVoxelModifierData> FVoxelGrid::GetModifiersForChunk(const FIntVector& ChunkCoord) const

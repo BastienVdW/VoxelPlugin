@@ -57,6 +57,16 @@ struct VOXELCORE_API FVoxelModifierParameters
 {
     GENERATED_BODY()
 
+	bool operator==(const FVoxelModifierParameters& Other) const
+	{
+		return Type == Other.Type &&
+			Operation == Other.Operation &&
+			SurfaceType == Other.SurfaceType &&
+			MeshSmoothing == Other.MeshSmoothing;
+	}
+
+	bool operator!=(const FVoxelModifierParameters& Other) const { return !(*this == Other); }
+
     UPROPERTY(EditAnywhere, Category="Voxel")
     EModifierType Type = EModifierType::MeshSDF;
 
@@ -75,6 +85,16 @@ USTRUCT()
 struct VOXELCORE_API FVoxelSDFData
 {
     GENERATED_BODY()
+
+	bool operator==(const FVoxelSDFData& Other) const
+	{
+		return Samples == Other.Samples &&
+			UVSamples == Other.UVSamples &&
+			Resolution == Other.Resolution &&
+			LocalBounds == Other.LocalBounds;
+	}
+
+	bool operator!=(const FVoxelSDFData& Other) const { return !(*this == Other); }
 
     // Flat Resolution^3 array of signed distances (cm)
     UPROPERTY()
@@ -96,6 +116,16 @@ USTRUCT()
 struct VOXELCORE_API FVoxelModifierData
 {
     GENERATED_BODY()
+
+	bool operator==(const FVoxelModifierData& Other) const
+	{
+		return Params == Other.Params &&
+			Transform.Equals(Other.Transform) &&
+			SDF == Other.SDF &&
+			MaterialPath == Other.MaterialPath;
+	}
+
+	bool operator!=(const FVoxelModifierData& Other) const { return !(*this == Other); }
 
     UPROPERTY()
     FVoxelModifierParameters Params;
